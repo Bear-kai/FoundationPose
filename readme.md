@@ -82,7 +82,6 @@ Later you can execute into the container without re-build.
 ```
 docker exec -it foundationpose bash
 ```
-For more recent GPU such as 4090, refer to [this](https://github.com/NVlabs/FoundationPose/issues/27).
 
 # Env setup option 2: conda (experimental)
 
@@ -139,7 +138,7 @@ To run model-based version on these two datasets respectively, set the paths bas
 ```
 python run_linemod.py --linemod_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/LINEMOD --use_reconstructed_mesh 0
 
-python run_ycb_video.py --ycbv_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/YCB-Video --use_reconstructed_mesh 0
+python run_ycb_video.py --ycbv_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/YCB_Video --use_reconstructed_mesh 0
 ```
 
 To run model-free few-shot version. You first need to train Neural Object Field. `ref_view_dir` is based on where you download in the above "Data prepare" section. Set the `dataset` flag to your interested dataset.
@@ -149,10 +148,17 @@ python bundlesdf/run_nerf.py --ref_view_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d
 
 Then run the similar command as the model-based version with some small modifications. Here we are using YCB-Video as example:
 ```
-python run_ycb_video.py --ycbv_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/YCB-Video --use_reconstructed_mesh 1 --ref_view_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/YCB_Video/bowen_addon/ref_views_16
+python run_ycb_video.py --ycbv_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/YCB_Video --use_reconstructed_mesh 1 --ref_view_dir /mnt/9a72c439-d0a7-45e8-8d20-d7a235d02763/DATASET/YCB_Video/bowen_addon/ref_views_16
 ```
 
+# Troubleshooting
 
+
+- For more recent GPU such as 4090, refer to [this](https://github.com/NVlabs/FoundationPose/issues/27).
+
+- For setting up on Windows, refer to [this](https://github.com/NVlabs/FoundationPose/issues/148).
+
+- If you are getting unreasonable results, check [this](https://github.com/NVlabs/FoundationPose/issues/44#issuecomment-2048141043)
 
 # Training data download
 Our training data include scenes using 3D assets from GSO and Objaverse, rendered with high quality photo-realism and large domain randomization. Each data point includes **RGB, depth, object pose, camera pose, instance segmentation, 2D bounding box**. [[Google Drive]](https://drive.google.com/drive/folders/1s4pB6p4ApfWMiMjmTXOFco8dHbNXikp-?usp=sharing)
